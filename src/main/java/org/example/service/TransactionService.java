@@ -5,6 +5,7 @@ import org.example.dto.CashRequestDto;
 import org.example.dto.TransactionDto;
 import org.example.handler.LedgerRequestReplyClient;
 import org.example.handler.Publisher;
+import org.example.handler.TransactionHandler;
 import org.example.model.Transaction;
 import org.example.model.TransactionStatus;
 import org.example.model.TransactionType;
@@ -28,6 +29,10 @@ public class TransactionService {
         this.ledgerClient = ledgerClient;
         this.ledgerRequestReplyClient = ledgerRequestReplyClient;
         this.publisher = publisher;
+    }
+
+    public Mono<TransactionDto> findById(String transactionId) {
+        return repository.findById(transactionId).map(this::toDto);
     }
 
     public Mono<TransactionDto> cashIn(CashRequestDto request) {

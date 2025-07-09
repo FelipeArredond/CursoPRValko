@@ -3,7 +3,7 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/cashflow
   rabbitmq:
-    addresses: amqps://tcvxntov:zQQTb-WW9Be7p7cJ5lefKlMdNfsDC7Cd@leopard.lmq.cloudamqp.com/tcvxntov
+    addresses: amqp://guest:guest@localhost:5672
 ledger:
   base-url: http://localhost:8081
 server:

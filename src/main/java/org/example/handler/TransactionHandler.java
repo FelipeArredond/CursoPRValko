@@ -31,4 +31,11 @@ public class TransactionHandler {
                 .flatMap(transactionDto -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(transactionDto));
     }
 
+    public Mono<ServerResponse> findTransactionById(ServerRequest request) {
+        var transactionId = request.pathVariable("id");
+        return service.findById(transactionId)
+                .flatMap(transactionDto -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(transactionDto))
+                .switchIfEmpty(ServerResponse.notFound().build());
+    }
+
 }
